@@ -76,7 +76,7 @@ export class HomePage {
       }//é o caso de eu editar e mudar e add! Mas se eu 
       //editar  
       else if (index !== undefined) {
-        console.log("amorrr ");
+        // console.log("amorrr ");
         this.tasks[index].description = description;
         this.saveTask(this.tasks[index]);
       }
@@ -89,28 +89,41 @@ export class HomePage {
     this.storage.remove(this.tasks[index].id)
       .then(() => {
         this.tasks.splice(index, 1);
-        this.presentToast('');
+        //Slice é apartir do elemento com (índiceTal, tire a qtd passada)
+        //tasks[index] e o tiro!
+        console.log(this.tasks.splice(index, 1));
+        this.presentToast('Deleted item!');
       })
       .catch(this.handleError);
   }
 
   editTask(description: string, index: number): void {
+    //vá pra TaskPage e leve consigo as variáveis description e index
     this.navCtrl.push('TaskPage', { description: description, index: index });
   }
 
   markAsDone(task: Task): void {
     task.done = !task.done;
-    this.saveTask(task);
+    if(task.done==true){
+      this.presentToast("marked item");
+    }else{
+      this.presentToast("unchecked item");
+    }
+ 
   }
 
   saveTask(task: Task): void {
+    //nesse caso o set recebe como parâmetro o id da task e uma task
     this.storage.set(task.id, task)
       .then(() => {
         this.presentToast('Item salvo!');
       })
       .catch(this.handleError);
   }
-
+  
+  //toastCtrl tem um método chamado create que recebe como parâmetro
+  //uma message que é uma string e uma duration que é um tempo definido em 
+  //milisegundos
   presentToast(message: string): void {
     const toast = this.toastCtrl.create({
       message: message,
@@ -121,7 +134,7 @@ export class HomePage {
   }
 
   handleError(error: any): void {
-    this.presentToast('Ocorreu um erro! Por favor, tente mais tarde.');
+    this.presentToast('An error has occurred! Please try again later.');
     console.error(error);
   }
 }
