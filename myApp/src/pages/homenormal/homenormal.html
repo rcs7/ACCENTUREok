@@ -14,23 +14,23 @@
       My Goals:
     </ion-list-header>
 
-    <ion-item *ngFor="let task of tasks; let i=index">
+    <ion-item *ngFor="let task of task1s; let i=index">
       <!-- 
         O Angular permite que todos os atributos de um elemento possam receber variáveis ou pedaços de códigos, 
         como o atributo name abaixo. Para fazer isso basta colocar os atributos entre colchetes: [name]
       -->
       <ion-icon item-start 
         [name]="task.done ? 'checkmark-circle-outline' : 'radio-button-off'"
-        (click)="markAsDone(task)">
+        (click)="markAsDon1e(task)">
       </ion-icon>
 
-      <span (click)="editTask(task.description, i)">
+      <span (click)="editTas1k(task.description, i)">
         <!-- <p><a href="{{ task.description }}" title="Click here to visit website">{{ task.description }}</a></p> -->
         {{ task.description }}
       </span>
 
       <ion-icon item-end name="trash" color="blue" 
-        (click)="deleteTask(i)">
+        (click)="deleteTas1k(i)">
       </ion-icon>
     </ion-item>
 
@@ -41,7 +41,7 @@
       
       Ou seja, o elemento abaixo soó vai aparecer quando a lista estiver vazia (length === 0)
     -->
-    <ion-item *ngIf="!tasks.length">
+    <ion-item *ngIf="!task1s.length">
       <ion-note>
         empty list
       </ion-note>

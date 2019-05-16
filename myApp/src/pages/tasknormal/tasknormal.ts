@@ -8,28 +8,28 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class TasknormalPage {
 
-  public description: string; 
-  public index: number;
+  public descriptio1n: string; 
+  public inde1x: number;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams
   ) { 
-    this.description = this.navParams.get('description');
-    this.index = this.navParams.get('index');
+    this.descriptio1n = this.navParams.get('description');
+    this.inde1x = this.navParams.get('index');
   }
 
   ionViewDidLoad() {
     this.navCtrl.getPrevious().data = {};
   }
 
-  addTask(): void {
+  addTas1k(): void {
     // GetPrevious() é um método do NavController para pegar a página anterior
-    const homePage = this.navCtrl.getPrevious();
+    const homePag1e = this.navCtrl.getPrevious();
     
     // Vamos injetar dentro do NavParams da página anterior a descrição da nova tarefa criando uma variável 'description' dentro de 'data'
-    homePage.data.description = this.description;
-    homePage.data.index = this.index;
+    homePag1e.data.description = this.descriptio1n;
+    homePag1e.data.index = this.inde1x;
     
     this.navCtrl.pop();
   }
